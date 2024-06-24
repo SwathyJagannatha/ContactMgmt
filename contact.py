@@ -92,33 +92,18 @@ def import_contact(contact_info): # not adding contacts
     if not file_name:
         print("File name is mandatory!!")
         return
-   
     try:
-     with open(file_name, "r") as file:
-        current_id = None
-        current_info = {}
-
+      with open("test_dict.txt","r") as file:
         for line in file:
-            if not isinstance(line,str):
-                print(f"Skipping lines which arent strings : {line} ")
-                continue
-            line = str(line).strip()
-            
-            if line.startswith("ID:"):
-                if current_id is not None:
-                    contact_info[current_id] = current_info
-                current_id = line.split(":",1)[1].strip()
-                current_info = {}
-            elif line:
-                key, value = line.split(":", 1)
-                if key.strip() == "additional_info":
-                        value = ast.literal_eval(value.strip())
-                current_info[key.strip()] = value.strip()
+            #print(line)
 
-        if current_id is not None:
-            contact_info[current_id] = current_info
-        print(contact_info)
-     
+            info = line.strip().split(" ")
+            print("ID :" , info[0])
+            print("Name:" , info[1])
+            print("Email :" , info[2])
+            print("phonenum :" , info[3])
+            print("\n")
+
     except FileNotFoundError:
         print(f"Error: The file {file_name} was not found.")
     except PermissionError:
@@ -126,9 +111,10 @@ def import_contact(contact_info): # not adding contacts
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-    #print("Noww displaying the Contact Information from dictionary:")
-    #display_contact(contact_info)
-
+    print("Noww displaying the Contact Information from dictionary:")
+    display_contact(contact_info)
+    pass
+    
 def edit_contact(contact_info):
      try:
         user_ip = input("Please enter your email address(to fetch you unique ID)")
@@ -213,6 +199,7 @@ def search_by_fields(contact_info):
         else:
           for fields, field_val in value.items():    
             if user_search in field_val:
+           # if any(search_query in str(value).lower() for value in details.values()):
                   print("search_by_field")
                   print(user_search)
                   print(f"{key} - {value}")
