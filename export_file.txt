@@ -1,0 +1,16 @@
+
+ID :john.doe@gmail.com
+
+name : John Doe
+phone_number : +1-789-234-1234
+alternate_number : +1-234-237-5647
+email : john.doe@gmail.com
+additional_info : {'address': '756 BlossomHill, Bakersfield, USA', 'notes': 'Para Educator Position.'}
+
+ID :jane.smith@abc.com
+
+name : Jane Smith
+phone_number : +1-456-234-4562
+alternate_number : +1-234-777-8653
+email : jane.smith@abc.com
+additional_info : {'address': '5678 Oak Street, Springfield, USA', 'notes': 'Works at ABC Corp.'}

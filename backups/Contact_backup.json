@@ -1,0 +1,42 @@
+{
+    "john.doe@gmail.com": {
+        "name": "John Doe",
+        "phone_number": "+1-789-234-1234",
+        "alternate_number": "+1-234-237-5647",
+        "email": "john.doe@gmail.com",
+        "additional_info": {
+            "address": "756 BlossomHill, Bakersfield, USA",
+            "notes": "Para Educator Position."
+        }
+    },
+    "jane.smith@abc.com": {
+        "name": "Jane Smith",
+        "phone_number": "+1-456-234-4562",
+        "alternate_number": "+1-234-777-8653",
+        "email": "jane.smith@abc.com",
+        "additional_info": {
+            "address": "5678 Oak Street, Springfield, USA",
+            "notes": "Works at ABC Corp."
+        }
+    },
+    "Bryer.churco@gmail.com": {
+        "name": "Bryer Churco",
+        "phone_number": "+1-789-2361234",
+        "alternate_number": "+1-234-879-5647",
+        "email": "Bryerchu46@gmail.com",
+        "additional_info": {
+            "address": "678 Amalfi Loop,California,USA",
+            "notes": "Yoga Instructor."
+        }
+    },
+    "Jerry.David@abc.com": {
+        "name": "Jerry David",
+        "phone_number": "+1-898-234-4562",
+        "alternate_number": "+1-234-798-8653",
+        "email": "Jerry.David@abc.com",
+        "additional_info": {
+            "address": "567 Lombard Street,San Francisco, USA",
+            "notes": "Works at NBC."
+        }
+    }
+}

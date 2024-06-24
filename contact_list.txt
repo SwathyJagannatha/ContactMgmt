@@ -1,0 +1,22 @@
+contact_info={
+     "Bryer.churco@gmail.com": {
+        "name": "Bryer Churco",
+        "phone_number": "+1-789-2361234",
+        "alternate_number" :"+1-234-879-5647",
+        "email": "Bryerchu46@gmail.com",
+        "additional_info": {
+            "address": "678 Amalfi Loop,California,USA",
+            "notes": "Yoga Instructor."
+        }
+    },
+    "Jerry.David@abc.com": {
+        "name": "Jerry David",
+        "phone_number": "+1-898-234-4562",
+        "alternate_number":"+1-234-798-8653",
+        "email": "Jerry.David@abc.com",
+        "additional_info": {
+            "address": "567 Lombard Street,San Francisco, USA",
+            "notes": "Works at NBC."
+        }
+    }
+}
