@@ -1,2 +1,0 @@
-john.doe@gmail.com John Doe +1-789-234-1234 +1-234-237-5647 john.doe@gmail.com 756-BlossomHill,Bakersfield,USA Para-Educator-Position.
-jane.smith@abc.com Jane Smith +1-456-234-4562 +1-234-777-8653 jane.smith@abc.com 5678-Oak-Street,Springfield,USA Works-at-ABC-Corp

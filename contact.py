@@ -1,4 +1,4 @@
-
+import re
 from colorama import Fore, Back, Style
 from termcolor import colored
 from datetime import date
@@ -37,14 +37,31 @@ def add_contact(contact_info):
     try:
         user_email = validate_input("Please enter your personal email!")
        
+        if not validate_email_format(user_email):
+               print(f"Email field invalid! Please enter a valid email!")       
+               
         user_phonenum = validate_input("Please enter your phone number!")
+
+        print(validate_phone_number(user_phonenum)) 
+
+        if not validate_phone_number(user_phonenum):
+               print(f"Phone number invalid") 
+               raise ValueError
           
         user_alternate_phone = validate_input("Please enter your alternate phone number!")
-              
+       
+        if not validate_phone_number(user_alternate_phone):
+               print(f"Phone number invalid") 
+               raise ValueError
+        
         user_address = validate_input("Please enter your address!")
                        
         user_cool_facts = validate_input("Please enter one cool fact!")
 
+    except ValueError:
+         print("Please enter valid phone number in the format +16308528209/(123)456-7890/123-456-7890/123 342 456" )
+         return
+    
     except Exception as e:
          print("Sorry , please enter all the required details!!")
 
@@ -65,8 +82,16 @@ def add_contact(contact_info):
         for Field,Value in value.items():
           print(f"- {Fore.GREEN} {Field} : {Fore.LIGHTMAGENTA_EX} {Value}{Style.RESET_ALL}")
 
+def validate_phone_number(phone_number):
+    pattern = re.compile(r'^\+?(\d{1,3})?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})$')
+    return pattern.match(phone_number) is not None
+
+def validate_email_format(email_field):
+    pattern = re.compile(r"[A-Za-z0-9._%!$+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+    return pattern.match(email_field) is not None
+
 def export_contact(contact_info):
-    file_name = input("Enter the filename from which you want to start the export process!!")
+    file_name = input("Enter the filename to start the export process!!")
     if not file_name:
         print("File name is mandatory!!")
         return
@@ -87,23 +112,32 @@ def export_contact(contact_info):
         print("Export process finally!!")  
     pass
 
-def import_contact(contact_info): # not adding contacts 
+def import_contact(contact_info): 
+     # splitting the file "test_dict.txt and extracting fields"
+     #  0    1      2                3                 4                    5                            6
+     #Cheryl David +14562344562 +12347778653 Cheryl.david@abc.com 5678-Oak-Street,Springfield,USA FitnessEnthusiast
+     #print(contact_info)  
+
     file_name = input("Enter the filename from which you want to start the import process!!")
     if not file_name:
         print("File name is mandatory!!")
         return
     try:
-      with open("test_dict.txt","r") as file:
+      with open(file_name,"r") as file:
         for line in file:
-            #print(line)
-
             info = line.strip().split(" ")
-            print("ID :" , info[0])
-            print("Name:" , info[1])
-            print("Email :" , info[2])
-            print("phonenum :" , info[3])
-            print("\n")
 
+            contact_info[info[4]] = {
+            "name" : info[0]+" "+info[1],
+            "phone_number" : info[2],
+            "alternate_number" : info[3],
+            "email": info[4],
+            "additional_info": {
+              "address": info[5],
+              "notes": info[6]
+            }
+          }
+          
     except FileNotFoundError:
         print(f"Error: The file {file_name} was not found.")
     except PermissionError:
@@ -186,27 +220,49 @@ def search_contact(contact_info):
             add_contact(contact_info)
      pass
 
+#Method 1
 def search_by_fields(contact_info):
     user_search = input("Enter your search term, for fetching your contact details!!")
-    
+    match_found = False
+
     if not user_search:
         print("Please enter the search field!")
     # search by name , phone_number, email address or others 
     # currently works when searched by name / phone no / email / alternate no
     for key,value in contact_info.items():
-        if user_search in key:
+        if user_search.lower() in key.lower():
+            match_found = True
             print(f"{key} : {value}")
         else:
           for fields, field_val in value.items():    
             if user_search in field_val:
            # if any(search_query in str(value).lower() for value in details.values()):
-                  print("search_by_field")
+                  print(f"Match found for {user_search} in fields")
                   print(user_search)
-                  print(f"{key} - {value}")
-                   
-            else:
-               pass
+                  print(f"Contact: {key} - Details: {value}")
+                  match_found = True
+    if not match_found:
+        print("No match found with your search input.")
+
     pass
+
+## using any keyword
+#Method 2
+# def search_by_fields(contact_info):
+#     user_search = input("Enter your search term, for fetching your contact details!!")
+#     match_found = False
+
+#     if not user_search:
+#         print("Please enter the search field!")
+    
+#     for key,value in contact_info.items():
+#         if user_search.lower() in key.lower() or any(user_search.lower() in str(field_value).lower() for field_value in value.values()) :
+#             print(f"Match found for search term: {user_search}")
+#             print(f"Contact :{key} - Details {value}")
+#             match_found = True
+            
+#     if not match_found:
+#         print("No match found for your search!!")
 
 def save_contacts_json(contact_info):
     user_input = input("Please enter the json file name, to save contact details!")
@@ -235,7 +291,8 @@ def restore_backup(contact_info_restore):
                data = json.load(file)
 
           contact_info_restore = data
-          print(contact_info_restore) 
+          print(contact_info_restore)
+          save_contacts_json(contact_info_restore) 
 
     except FileNotFoundError: 
       print("The specified backup file does not exist!")
@@ -276,18 +333,17 @@ def delete_contact(contact_info):
             search_contact(contact_info)
      pass
 
-#delete_contact(contact_info)
-
 def display_contact_id(contact_info):
     contact_id = input("Please enter you email for displaying your contact details!")
 
     if contact_id in contact_info:
         print("Sucess! Details are submitted to form a contact\n")
         print("displaying contacts existing ones\n")
-        for key,value in contact_info.items():
-          print(f"{Fore.CYAN}ID : {Fore.YELLOW}{key}{Style.RESET_ALL}")
-          for Field,Value in value.items():
+        print(f"{Fore.CYAN}ID : {Fore.YELLOW}{contact_id}{Style.RESET_ALL}")
+        for Field, Value in contact_info[contact_id].items():
             print(f"- {Fore.GREEN} {Field} : {Fore.LIGHTMAGENTA_EX} {Value}{Style.RESET_ALL}")
+    else:
+        print("No contact found with the provided email.")
     pass
 
 def add_custom_fields(contact_info):
@@ -358,7 +414,7 @@ def main(contact_info):
         1. Adding a new contact with all relevant details.
         2. Editing an existing contact's information (name, phone number, email, etc.).
         3. Deleting a contact by searching for their unique identifier.
-        4. Searching for a contact by their unique identifier and displaying their details.
+        4. Searching for a contact by their unique identifier and displaying their details(extra : includes search based on specific fields)
         5. Displaying a list of all contacts with their unique identifiers.
         6. Displaying list of all contacts in the system.
         7. Exporting contacts to a text file in a structured format.
@@ -411,12 +467,11 @@ def main(contact_info):
             elif choice == "7":
                     print("Export contacts to a text file")
                     export_contact(contact_info)
-                    break
             
             elif choice == "8":
                     print("Import contacts from a text file")
-                    import_contact(contact_info) # need to fix this
-                    break
+                    import_contact(contact_info)
+
             elif choice == "9":
                     user_inp = input("Do you want to add custom fields for contacts? like birthdays and anniverseries?").lower()
                     if user_inp == "yes": 
@@ -441,8 +496,8 @@ def main(contact_info):
 contact_info={
      "john.doe@gmail.com": {
         "name": "John Doe",
-        "phone_number": "+1-789-234-1234",
-        "alternate_number" :"+1-234-237-5647",
+        "phone_number": "+17822841934",
+        "alternate_number" :"+12382375687",
         "email": "john.doe@gmail.com",
         "additional_info": {
             "address": "756 BlossomHill, Bakersfield, USA",
@@ -451,8 +506,8 @@ contact_info={
     },
     "jane.smith@abc.com": {
         "name": "Jane Smith",
-        "phone_number": "+1-456-234-4562",
-        "alternate_number":"+1-234-777-8653",
+        "phone_number": "+15562342362",
+        "alternate_number":"+12346678853",
         "email": "jane.smith@abc.com",
         "additional_info": {
             "address": "5678 Oak Street, Springfield, USA",

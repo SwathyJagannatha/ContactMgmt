@@ -1,0 +1,32 @@
+
+ID :john.doe@gmail.com
+
+name : John Doe
+phone_number : +17822841934
+alternate_number : +12382375687
+email : john.doe@gmail.com
+additional_info : {'address': '756 BlossomHill, Bakersfield, USA', 'notes': 'Para Educator Position.'}
+
+ID :jane.smith@abc.com
+
+name : Jane Smith
+phone_number : +15562342362
+alternate_number : +12346678853
+email : jane.smith@abc.com
+additional_info : {'address': '5678 Oak Street, Springfield, USA', 'notes': 'Works at ABC Corp.'}
+
+ID :Bryer.Churco@gmail.com
+
+name : Bryer Churco
+phone_number : +17892341234
+alternate_number : +12342375647
+email : Bryer.Churco@gmail.com
+additional_info : {'address': '756-BlossomHill,Bakersfield', 'notes': 'Yoga-Instructor.'}
+
+ID :Cheryl.david@abc.com
+
+name : Cheryl David
+phone_number : +14562344562
+alternate_number : +12347778653
+email : Cheryl.david@abc.com
+additional_info : {'address': '5678-Oak-Street,Springfield,USA', 'notes': 'Fitness-Enthusiast.'}
