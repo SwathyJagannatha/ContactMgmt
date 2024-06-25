@@ -1,14 +1,14 @@
 Introduction:
-.............
+
 Welcome to the Contact Management System project! In this project, you will apply your Python programming skills to create a functional command-line-based application that simplifies the management of your contacts. The Contact Management System will empower you to add, edit, delete, and search for contacts with ease, all while reinforcing your understanding of Python dictionaries, file handling, user interaction, and error handling.
 
 
 Project Requirements:
-......................
+.
 Task is to develop a Contact Management System with the following features:
 
 User Interface (UI):
-....................
+
 Create a user-friendly command-line interface (CLI) for the Contact Management System.
 
 Display a welcoming message and provide a menu with the following options:
@@ -23,7 +23,7 @@ Menu:
 8. Quit 
 
 Contact Data Storage:
-.....................
+
 Use nested dictionaries as the main data structure for storing contact information.
 Each contact should have a unique identifier (e.g., a phone number or email address) as the outer dictionary key.
 Store contact details within the inner dictionary, including:
@@ -35,7 +35,8 @@ Additional information (e.g., address, notes).
 
 
 Menu Actions:
-..............
+
+
 Implement the following actions in response to menu selections:
 Adding a new contact with all relevant details.
 Editing an existing contact's information (name, phone number, email, etc.).
