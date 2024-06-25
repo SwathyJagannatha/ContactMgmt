@@ -4,8 +4,8 @@ Welcome to the Contact Management System project! In this project, you will appl
 
 
 Project Requirements:
-
-Your task is to develop a Contact Management System with the following features:
+......................
+Task is to develop a Contact Management System with the following features:
 
 User Interface (UI):
 ....................
@@ -64,7 +64,7 @@ Include clear instructions on how to run the application and explanations of its
 Provide examples and screenshots, if possible, to enhance user understanding.
 Include a link to your GitHub repository in your project documentation.
 
-Optional Bonus Points
+Optional Features
 .......................
 Contact Categories (Bonus): Implement the ability to categorize contacts into groups (e.g., friends, family, work). Each contact can belong to one or more categories.
 Contact Search (Bonus): Enhance the contact search functionality to allow users to search for contacts by name, phone number, email address, or additional information.
@@ -73,6 +73,36 @@ Backup and Restore (Bonus): Add features to create automatic backups of contact 
 Custom Contact Fields (Bonus): Allow users to define custom fields for contacts (e.g., birthdays, anniversaries) and store this information.
 
 Github repository link :
+.......................
 
 https://github.com/SwathyJagannatha/ContactMgmt.git
+
+Prerequisites:
+..............
+Ensure you have Python installed on your system. You can download it from python.org and follow the installation instructions for your operating system.
+You'll also need pip, Python's package installer, which usually comes with Python by default. Check if it's installed by running pip --version in your command line or terminal.
+
+Steps to run the application:
+.............................
+Clone the repository:
+
+1.Open your command line or terminal and clone the repository using Git:
+
+git clone https://github.com/SwathyJagannatha/ContactMgmt.git
+
+2.Navigate into the project directory:
+
+cd ContactMgmt
+
+3.Install dependencies:
+
+pip install -r requirements.txt
+
+This command installs all the required Python packages specified in the requirements.txt file.
+
+4. Run the application:
+
+python main.py
+
+This command starts the application. Depending on how the application is structured, main.py might be the entry point script. If the structure is different, you might need to adjust this command based on the actual file structure.
 
